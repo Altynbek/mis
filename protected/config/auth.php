@@ -80,13 +80,5 @@ return array (
     'description' => 'guest',
     'bizRule' => NULL,
     'data' => NULL,
-    'assignments' => 
-    array (
-      16 => 
-      array (
-        'bizRule' => NULL,
-        'data' => NULL,
-      ),
-    ),
   ),
 );

@@ -1,19 +1,20 @@
 <?php
 class WebUser extends CWebUser {
     private $_model = null;
- 
+    private $_idEmployee = null;
+
     function getRole() {
-        if($users = $this->getModel()){
-            // в таблице Users есть поле role
-            return $users->role;
+        if($user = $this->getModel()){
+            return $user->role;
         }
     }
  
     private function getModel(){
         if (!$this->isGuest && $this->_model === null){
-            $this->_model = Authdata::model()->findByPk(array(
-            	'idauthData' => $this->id, 
-            	'employee_idEmployee' => 'employee_idEmployee'), array('select' => 'role'));
+            $searchedRow = Authdata::model()->findBySql('SELECT * FROM authdata WHERE idauthData='.$this->id);
+            $this->_idEmployee = $searchedRow->employee_idEmployee;
+            
+            $this->_model = Authdata::model()->findByPk(array('idauthData' => $this->id, 'employee_idEmployee' => $this->_idEmployee));
         }
         return $this->_model;
     }

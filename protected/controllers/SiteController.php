@@ -33,7 +33,6 @@ class SiteController extends Controller
 
 		if(!Yii::app()->user->isGuest)
 		{
-			//var_dump(Yii::app()->user->getRole());
 			$this->renderPartial('_home');
 		}
 
